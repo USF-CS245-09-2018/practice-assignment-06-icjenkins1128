@@ -1,4 +1,3 @@
-
 public class Practice06Test {
 	
 	protected Queue queue;
@@ -23,12 +22,32 @@ public class Practice06Test {
 		}
 	}
 	
-	
+	//isPalindrome is now adjusted!
 	public boolean isPalindrome(String item) {
 		clearData();
-		for (int i = 0; i < item.length(); i++) {
-			stack.push(item.substring(i, i+1));
-			queue.enqueue(item.substring(i, i+1));
+
+		String newItem = "";
+
+		//Iterate over string to remove anything that is not a letter because a palindrome consists of letters only.
+		for (int i = 0; i != item.length(); ++i) {
+
+        	if (Character.isLetter(item.charAt(i))) {
+
+        			newItem += item.charAt(i);
+            	
+
+        	}
+
+    	}
+
+
+		for (int i = 0; i < newItem.length(); i++) {
+
+			//Convert strings to lowercase to check all palindromes even if there are uppercase letters
+			String itemSubstring = newItem.substring(i, i+1).toLowerCase();
+			stack.push(itemSubstring);
+			queue.enqueue(itemSubstring);
+
 		}
 
 		while (! stack.empty() && ! queue.empty()) {
